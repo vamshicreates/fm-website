@@ -1,67 +1,52 @@
-# Fake Muchatlu (@fakemuchatlu) Visual Archive & Anthology (2018–2026)
+# Fake Muchatlu Archive
 
-An interactive, responsive web archive commemorating 8 years of **Fake Muchatlu** (అబద్ధపు ముచ్చట్లు) — the iconic Telugu writer, barista, and visual essayist known for dry self-deprecating wit, coffee house philosophy, and minimalist typography.
+Every [@fakemuchatlu](https://www.instagram.com/fakemuchatlu/) post (557 posts, July 2018 – November 2026) on one white page, grouped by the look each post was made in. Every card shows the image, its `instagram.com/p/…` link and date, and clicking it opens that exact post on Instagram.
 
----
+## The 12 looks
 
-## ✨ Features
+The sections come from reading date-ordered contact sheets of every post (`analysis/`) and marking where the visual style actually changes, not from calendar years.
 
-- **Full Archival Collection**: Every single post (550+ posts, 1,350+ images/slides) spanning from the July 2018 inception to November 2026.
-- **Sectioned by Stylistic Evolution**: The creator's aesthetic evolved dramatically over 8 years. Posts are organized chronologically and stylistically into 6 distinct eras:
-  1. 🔴 **Era VI: Crimson & Contemporary (2025–2026)** — Bold vermilion & deep wine cards with modern Telugu attitude.
-  2. 🎨 **Era V: Pastel & Tinted Canvas (2024)** — Soft pastels, sky blue tints, and illustrated contemplative notes.
-  3. 🌑 **Era IV: Midnight Charcoal & Dark Room (2022–2023)** — Obsidian and deep graphite cards; late-night unfiltered musings.
-  4. 📜 **Era III: White Parchment & Journal Notes (2020–2021)** — Clean off-white paper, ink pen lettering, 90s Telugu nostalgia, and lockdown reflections.
-  5. ◻️ **Era II: Monochromatic Square Reflections (2019)** — Classic square format, understated monochrome palettes, and punchy sarcastic social commentary.
-  6. 🏛️ **Era I: The Genesis & Raw Foundations (2018)** — Dark slate textures, square frames, and early philosophical verses that sparked the account.
-- **Direct Instagram Linking**: Every card features the image, caption, date, likes count, and a direct link pill (`instagram.com/p/{shortcode}`). Clicking the card or link navigates directly to the original Instagram post!
-- **Interactive Lightbox Modal**: View high-resolution multi-slide carousels, read full captions, navigate with arrow keys, and copy direct links with one click.
-- **Search & Sort Engine**: Real-time filtering by caption text, dates, Telugu words, and Romanized phrases. Sort by Newest, Oldest, Most Liked, or Most Slides.
-- **View Switcher**: Standard Grid, Compact Gallery (for scanning large volumes), and Editorial Feed.
-- **Dual Theme Support**: Dark Espresso Mode and Warm Parchment Light Mode.
+| # | Look | Period | Posts |
+|---|------|--------|------:|
+| 01 | The Fm Stamp: charcoal/white squares, yellow "#Fake Muchatlu" tag, Fm mark | Jul 2018 – Nov 2019 | 96 |
+| 02 | Dashed Frames: logo on top, dotted border, mascot sign-off | Nov – Dec 2019 | 24 |
+| 03 | Tweet Cards: avatar + handle tweet layout on white | Dec 2019 – Sep 2020 | 167 |
+| 04 | Paper Notes: typewriter serif on grey paper and kraft | Sep – Oct 2020 | 43 |
+| 05 | Clean Notes & Chats: bare notes, chat bubbles, challenge lists | Dec 2020 – Aug 2021 | 28 |
+| 06 | Dark Serif: black cards, serif, mustard highlights | Aug – Dec 2021 | 8 |
+| 07 | Meme Tweets: red FM avatar + Telugu cinema stills | Dec 2021 – Jul 2022 | 45 |
+| 08 | Notes App: plain-text notes and iMessage bubbles | Jul 2022 – Apr 2023 | 24 |
+| 09 | After Dark: black cards with heavy white type | Apr 2023 – Jul 2024 | 20 |
+| 10 | Photo Poems: landscapes with serif overlays | Dec 2024 – Feb 2025 | 16 |
+| 11 | Poster Lab: crimson/cream/forest posters, halftone, ghost | Feb – Nov 2025 | 65 |
+| 12 | The Red Room: crimson cards, mustard italic serif | Nov 2025 – Nov 2026 | 21 |
 
----
+## Design
 
-## 📂 Directory Structure
+Borrowed from the account itself: crimson `#971c1f`, mustard `#e5b33a`, forest `#103b1f`, charcoal `#1f1e25`; Instrument Serif (the italic poster serif), League Gothic (the condensed poster type), Silkscreen (the pixel "FAKE MUCHATLU" labels), Poppins (the early cards); grain texture; the Fm logo rebuilt in CSS. Page background is white.
+
+## Folder
 
 ```
 fm-website/
-├── posts_all/         # Complete untouched raw archive of all 1,354 JPGs, 21 MP4s, and 1,375 JSONs
-├── public/
-│   ├── data/posts.json # Compiled metadata database
-│   └── images/         # Optimized 800px WebP images for instant web loading
-├── src/
-│   ├── components/     # Navbar, Hero, ControlsBar, EraSection, PostCard, LightboxModal, Footer
-│   ├── data/posts.json # Bundled JSON for fast client-side filtering
-│   ├── App.jsx
-│   ├── main.jsx
-│   └── index.css
-├── scripts/
-│   └── process_archive.py # Pipeline that processed the raw Instagram data & generated WebP assets
-└── package.json
+├── posts_all/              raw scrape: 1,354 JPGs, 21 MP4s + metadata JSON (not in git)
+├── public/images/          800px WebP for every post (+ poster frames for 4 video posts)
+├── public/videos/          the 4 video-only posts, web-encoded
+├── src/data/posts.json     557 posts with section, link, date, size
+├── src/App.jsx, index.css  the site
+├── scripts/process_archive.py   raw → WebP pipeline
+├── scripts/build_sections.py    assigns each post to its look
+└── analysis/               contact sheets used to find the style boundaries
 ```
 
----
-
-## 🚀 Running Locally
+## Run
 
 ```bash
-cd fm-website
 npm install
-npm run dev
-```
-
-Visit `http://localhost:3000` to browse the archive.
-
-## 🏗️ Production Build
-
-```bash
+npm run dev      # http://localhost:3000
 npm run build
-npm run preview
 ```
 
----
+Deployed on Vercel from `main`.
 
-## ☕ Author Bio Quote
-> *"Na stroke chaala amateurish ga untundhi. SCA cert. Making coffee, cleaning tables, mopping floors & pretending to be useful. Currently: destitute."*  
-> — **Fake Muchatlu**
+Built by [Vamshi Creates](https://vamshicreates.tech). All posts and artwork belong to @fakemuchatlu.

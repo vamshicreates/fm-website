@@ -4,3 +4,6 @@ dist
 .env
 .env.local
 .vercel
+posts_all/
+posts_raw/
+data_test/
