@@ -1,0 +1,64 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html.light {
+  color-scheme: light;
+}
+
+body {
+  margin: 0;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+/* Custom subtle scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(18, 17, 16, 0.8);
+}
+
+.light ::-webkit-scrollbar-track {
+  background: rgba(244, 239, 230, 0.8);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(217, 45, 32, 0.4);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(217, 45, 32, 0.8);
+}
+
+/* Subtle editorial paper grain */
+.paper-texture {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 0);
+  background-size: 24px 24px;
+}
+
+.light .paper-texture {
+  background-image: radial-gradient(rgba(26, 24, 22, 0.05) 1px, transparent 0);
+}
+
+/* Line clamp */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
