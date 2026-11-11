@@ -1,25 +1,25 @@
 # Fake Muchatlu Archive
 
-Every [@fakemuchatlu](https://www.instagram.com/fakemuchatlu/) post (557 posts, July 2018 – November 2026) on one white page, grouped by the look each post was made in. Every card shows the image, its `instagram.com/p/…` link and date, and clicking it opens that exact post on Instagram.
+Every [@fakemuchatlu](https://www.instagram.com/fakemuchatlu/) post (557 posts, July 2018 – November 2026) on one white page, grouped by style. Every card shows the image, its `instagram.com/p/…` link and date, and clicking it opens that exact post on Instagram.
 
-## The 12 looks
+## Styles
 
-The sections come from reading date-ordered contact sheets of every post (`analysis/`) and marking where the visual style actually changes, not from calendar years.
+Posts are grouped into styles where the visual look of the account changes (worked out from date-ordered contact sheets in `analysis/`). Each style shows 12 posts at a time in a 3-column grid, with numbered pages for the rest.
 
-| # | Look | Period | Posts |
-|---|------|--------|------:|
-| 01 | The Fm Stamp: charcoal/white squares, yellow "#Fake Muchatlu" tag, Fm mark | Jul 2018 – Nov 2019 | 96 |
-| 02 | Dashed Frames: logo on top, dotted border, mascot sign-off | Nov – Dec 2019 | 24 |
-| 03 | Tweet Cards: avatar + handle tweet layout on white | Dec 2019 – Sep 2020 | 167 |
-| 04 | Paper Notes: typewriter serif on grey paper and kraft | Sep – Oct 2020 | 43 |
-| 05 | Clean Notes & Chats: bare notes, chat bubbles, challenge lists | Dec 2020 – Aug 2021 | 28 |
-| 06 | Dark Serif: black cards, serif, mustard highlights | Aug – Dec 2021 | 8 |
-| 07 | Meme Tweets: red FM avatar + Telugu cinema stills | Dec 2021 – Jul 2022 | 45 |
-| 08 | Notes App: plain-text notes and iMessage bubbles | Jul 2022 – Apr 2023 | 24 |
-| 09 | After Dark: black cards with heavy white type | Apr 2023 – Jul 2024 | 20 |
-| 10 | Photo Poems: landscapes with serif overlays | Dec 2024 – Feb 2025 | 16 |
-| 11 | Poster Lab: crimson/cream/forest posters, halftone, ghost | Feb – Nov 2025 | 65 |
-| 12 | The Red Room: crimson cards, mustard italic serif | Nov 2025 – Nov 2026 | 21 |
+| Style | Period | Posts |
+|---|---|---:|
+| Style 1 | Jul 2018 – Nov 2019 | 96 |
+| Style 2 | Nov – Dec 2019 | 24 |
+| Style 3 | Dec 2019 – Sep 2020 | 167 |
+| Style 4 | Sep – Oct 2020 | 43 |
+| Style 5 | Dec 2020 – Aug 2021 | 28 |
+| Style 6 | Aug – Dec 2021 | 8 |
+| Style 7 | Dec 2021 – Jul 2022 | 45 |
+| Style 8 | Jul 2022 – Apr 2023 | 24 |
+| Style 9 | Apr 2023 – Jul 2024 | 20 |
+| Style 10 | Dec 2024 – Feb 2025 | 16 |
+| Style 11 | Feb – Nov 2025 | 65 |
+| Style 12 | Nov 2025 – Nov 2026 | 21 |
 
 ## Design
 

@@ -47,12 +47,11 @@ function Hero({ profile, sections, total }) {
           <em>Na stroke</em> chaala <br />amateurish ga <em>untundhi.</em>
         </h1>
         <p className="hero-sub">
-          Every post from <strong>@fakemuchatlu</strong>, July 2018 to today, grouped by the look it was made in.
+          Every post from <strong>@fakemuchatlu</strong>, July 2018 to today, grouped by style.
           Tap any post to open it on Instagram.
         </p>
         <div className="hero-stats">
           <div><b>{total}</b><span className="pixel">posts</span></div>
-          <div><b>{sections.length}</b><span className="pixel">looks</span></div>
           <div><b>{years}</b><span className="pixel">years</span></div>
           <div><b>{profile.followers}</b><span className="pixel">followers</span></div>
         </div>
@@ -66,8 +65,8 @@ function LookIndex({ sections, firstImages, order }) {
   return (
     <section className="index" aria-label="All looks">
       <div className="index-head">
-        <h2 className="poster-h">Twelve looks, one voice</h2>
-        <p>The style kept changing; the jokes didn't. Jump to any era.</p>
+        <h2 className="poster-h">Styles</h2>
+        <p>Jump to a style.</p>
       </div>
       <ol className="index-grid">
         {order.map((s) => (
@@ -79,8 +78,7 @@ function LookIndex({ sections, firstImages, order }) {
                 ))}
               </div>
               <div className="index-meta">
-                <span className="index-no" style={{ color: SWATCH[s.id] }}>{pad(s.no)}</span>
-                <span className="index-title">{s.title}</span>
+                <span className="index-title"><i style={{ background: SWATCH[s.id] }} />Style {s.no}</span>
                 <span className="pixel index-dates">{ym(s.from + '-01')} – {ym(s.to + '-01')} · {s.count}</span>
               </div>
             </a>
@@ -102,7 +100,7 @@ function SectionNav({ order, active, newestFirst, setNewestFirst }) {
         {order.map((s) => (
           <a key={s.id} data-id={s.id} href={`#${s.id}`} className={active === s.id ? 'on' : ''}
              style={{ '--sw': SWATCH[s.id] }}>
-            <i />{pad(s.no)} {s.title}
+            <i />Style {s.no}
           </a>
         ))}
       </div>
@@ -114,38 +112,66 @@ function SectionNav({ order, active, newestFirst, setNewestFirst }) {
 }
 
 function PostCard({ p }) {
-  const short = `instagram.com/p/${p.shortcode}`;
   return (
     <a className="post" href={p.url} target="_blank" rel="noopener noreferrer"
        title={p.caption ? p.caption.slice(0, 140) : 'Open on Instagram'}>
-      <div className="post-img" style={{ aspectRatio: `${p.w} / ${p.h}` }}>
+      <div className="post-img">
         <img src={p.image} alt={p.caption ? p.caption.slice(0, 120) : `Fake Muchatlu post, ${fullDate(p.date)}`}
              loading="lazy" decoding="async" width={p.w} height={p.h} />
         {p.video && <span className="badge">▶ video</span>}
         {!p.video && p.slides > 1 && <span className="badge">1 / {p.slides}</span>}
       </div>
       <div className="post-meta">
-        <span className="post-link">{short} <span aria-hidden="true">↗</span></span>
+        <span className="post-link"><span className="lnk-pre">instagram.com/p/</span>{p.shortcode} <span aria-hidden="true">↗</span></span>
         <span className="post-date">{fullDate(p.date)}</span>
       </div>
     </a>
   );
 }
 
+const PER_PAGE = 12;
+
+function Pager({ page, pages, go }) {
+  if (pages <= 1) return null;
+  return (
+    <nav className="pager" aria-label="Pages">
+      <button className="pg-arrow" onClick={() => go(page - 1)} disabled={page === 0} aria-label="Previous page">←</button>
+      {Array.from({ length: pages }, (_, i) => (
+        <button key={i} className={i === page ? 'pg on' : 'pg'} onClick={() => go(i)}
+                aria-current={i === page ? 'page' : undefined}>{i + 1}</button>
+      ))}
+      <button className="pg-arrow" onClick={() => go(page + 1)} disabled={page === pages - 1} aria-label="Next page">→</button>
+    </nav>
+  );
+}
+
 function Section({ s, posts }) {
+  const [page, setPage] = useState(0);
+  const pages = Math.ceil(posts.length / PER_PAGE);
+  // uniform cells per style: use the style's most common shape so nothing is cropped
+  const ratio = useMemo(() => {
+    const r = posts.map((p) => p.w / p.h).sort((a, b) => a - b);
+    return r[Math.floor(r.length / 2)] || 0.8;
+  }, [posts]);
+  const go = (i) => {
+    setPage(Math.max(0, Math.min(pages - 1, i)));
+    document.getElementById(s.id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+  const shown = posts.slice(page * PER_PAGE, page * PER_PAGE + PER_PAGE);
   return (
     <section className="look" id={s.id} style={{ '--sw': SWATCH[s.id] }}>
       <header className="look-head">
         <span className="look-no">{pad(s.no)}</span>
         <div className="look-text">
           <span className="pixel look-dates">{ym(s.from + '-01')} – {ym(s.to + '-01')} · {s.count} posts</span>
-          <h2 className="look-title">{s.title}</h2>
-          <p className="look-blurb">{s.blurb}</p>
+          <h2 className="look-title">Style {s.no}</h2>
         </div>
+        {pages > 1 && <span className="pixel look-page">Page {page + 1} / {pages}</span>}
       </header>
-      <div className="masonry">
-        {posts.map((p) => <PostCard key={p.id} p={p} />)}
+      <div className="grid3" style={{ '--ratio': ratio }}>
+        {shown.map((p) => <PostCard key={p.id} p={p} />)}
       </div>
+      <Pager page={page} pages={pages} go={go} />
     </section>
   );
 }
@@ -191,7 +217,7 @@ export default function App() {
         <SectionNav order={order} active={active} newestFirst={newestFirst} setNewestFirst={setNewestFirst} />
         {order.map((s) => {
           const list = bySection[s.id] || [];
-          return <Section key={s.id} s={s} posts={newestFirst ? list : [...list].reverse()} />;
+          return <Section key={s.id + (newestFirst ? '-n' : '-o')} s={s} posts={newestFirst ? list : [...list].reverse()} />;
         })}
       </main>
       <footer className="foot">
